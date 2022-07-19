@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Access</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="enterLogin">Email</string>
+    <string name="enterPassword">Password</string>
+    <string name="enter">Enter</string>
+    <string name="show">Signup</string>
+    <string name="signup">signup</string>
+</resources>
