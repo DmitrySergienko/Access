@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -60,7 +59,9 @@ class LogInFragment : Fragment() {
 
             viewModel.loginLiveData.observe(requireActivity(), Observer { response ->
                 if (response.isSuccessful && response.body()?.pLOGIN_FLAG == "Y") {
-                    Log.d("VVV", "Good!")
+                    view?.let { it1 ->
+                        Navigation.findNavController(it1).navigate(R.id.action_logInFragment_to_mainFragment2)
+                    }
                 } else {
                     Log.d("VVV", response.body().toString())
                 }

@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.access.data.api.model.LoginRequest
 import com.access.data.api.model.LoginResponse
-import com.access.data.api.model.ReguistrationRequest
 import com.access.data.repository.AccessRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

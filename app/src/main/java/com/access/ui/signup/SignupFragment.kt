@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.access.R
-import com.access.databinding.FragmentLogInBinding
 import com.access.databinding.FragmentSignupBinding
 import com.access.ui.login.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
