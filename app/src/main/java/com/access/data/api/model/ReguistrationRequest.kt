@@ -2,7 +2,7 @@ package com.access.data.api.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Signup(
+data class ReguistrationRequest(
 
 	@field:SerializedName("P_EMAIL")
 	val pEMAIL: String? = null,

@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.access.R
-import com.access.data.api.model.Login
+import com.access.data.api.model.LoginRequest
 import com.access.databinding.FragmentLogInBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,18 +51,25 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.loginButton.setOnClickListener {
-            val myPost = Login("3", "3")
+            val myPost = LoginRequest("dem@gmail.com", "123456f")
             viewModel.pushLogin(myPost)
             viewModel.loginLiveData.observe(requireActivity(), Observer { response ->
                 if (response.isSuccessful) {
-                    Log.d("VVV", response.body().toString())
-                    Log.d("VVV", response.code().toString())
-                    Log.d("VVV", response.message().toString())
+                    Log.d("VVV", "Resp body: ${response.body().toString()}")
+                    Log.d("VVV", "Resp code: ${response.code()}")
+                    Log.d("VVV", "Resp message: ${response.message()}")
+                    Log.d("VVV", "Resp row: ${response.raw()}")
+                    Log.d("VVV", "Resp errorBody: ${response.errorBody()}")
 
                     Toast.makeText(requireContext(), response.body().toString(), Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    Log.d("VVV", response.code().toString())
+                    Log.d("VVV", "Resp body: ${response.body().toString()}")
+                    Log.d("VVV", "Resp code: ${response.code()}")
+                    Log.d("VVV", "Resp row: ${response.raw()}")
+                    Log.d("VVV", "Resp message: ${response.message()}")
+                    Log.d("VVV", "Resp errorBody: ${response.errorBody()}")
+
                 }
             })
         }
