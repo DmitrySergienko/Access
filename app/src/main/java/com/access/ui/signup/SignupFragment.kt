@@ -1,22 +1,25 @@
 package com.access.ui.signup
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.access.R
+import com.access.data.api.model.ReguistrationRequest
 import com.access.databinding.FragmentSignupBinding
-import com.access.ui.login.LoginViewModel
+import com.access.ui.login.LogInFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class SignupFragment : Fragment() {
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: RegistrationViewModel by viewModels()
 
     private var _binding: FragmentSignupBinding? = null
     val binding: FragmentSignupBinding
@@ -45,11 +48,40 @@ class SignupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.enterButton.setOnClickListener {
+
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+            val lastName = binding.lastNameEditText.text.toString()
+            val firstName = binding.firstNameEditText.text.toString()
+            val phone = binding.phoneEditText.text.toString()
+
+            val myPost = ReguistrationRequest(email, password, lastName, phone, firstName)
+            viewModel.pushRegistration(myPost)
+
+            viewModel.regLiveData.observe(requireActivity(), Observer { response ->
+                viewModel.regLiveData.observe(requireActivity(), Observer { response ->
+                    if (response.isSuccessful) {
+                        //Toast.makeText(requireContext(), "REGISTERED", Toast.LENGTH_SHORT).show()
+
+                        view.let { it1 ->
+                            Navigation.findNavController(it1).navigate(R.id.action_navigate_to_log_in_fragment)
+                        }
+
+                    } else {
+                        Log.d("VVV", response.body().toString())
+                    }
+                })
+            })
+
+        }
+
     }
 
     companion object {
 
         @JvmStatic
-        fun newInstance() = SignupFragment()
+        fun newInstance() = LogInFragment()
+
     }
 }

@@ -32,5 +32,9 @@
         android:id="@+id/mainFragment2"
         android:name="com.access.ui.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment2_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
 </navigation>

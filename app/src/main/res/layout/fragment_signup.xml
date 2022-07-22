@@ -109,8 +109,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guide_line_5" />
 
-    <EditText
-        android:id="@+id/loginButton"
+    <Button
+        android:id="@+id/enterButton"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

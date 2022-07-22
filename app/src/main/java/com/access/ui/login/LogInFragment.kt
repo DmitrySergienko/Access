@@ -1,10 +1,10 @@
 package com.access.ui.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -63,7 +63,7 @@ class LogInFragment : Fragment() {
                         Navigation.findNavController(it1).navigate(R.id.action_logInFragment_to_mainFragment2)
                     }
                 } else {
-                    Log.d("VVV", response.body().toString())
+                    Toast.makeText(requireContext(), "INCORRECT EMAIL OR PASSWORD", Toast.LENGTH_SHORT).show()
                 }
             })
         }

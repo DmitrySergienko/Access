@@ -14,7 +14,7 @@ class AccessRepo @Inject constructor(
     suspend fun pushPostLog(post: LoginRequest): Response<LoginResponse> {
         return accessApi.pushLogin(post)
     }
-    suspend fun pushPostReg(post:ReguistrationRequest): Response<Any>{
+    suspend fun pushPostReg(post:ReguistrationRequest): Response<Void>{
         return  accessApi.pushRegistration(post)
     }
 }

@@ -1,5 +1,6 @@
 package com.access.di
 
+
 import com.access.data.api.AccessApi
 import dagger.Module
 import dagger.Provides
@@ -20,6 +21,7 @@ object AppModule {
     fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

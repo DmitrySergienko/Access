@@ -17,6 +17,6 @@ interface  AccessApi {
     @POST("pls/apex/pmstest/MobileApp/registration")
     suspend fun pushRegistration(
         @Body post: ReguistrationRequest
-    ): Response<Any>
+    ): Response<Void>
 
 }
