@@ -51,25 +51,18 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.loginButton.setOnClickListener {
-            val myPost = LoginRequest("dem@gmail.com", "123456f")
+
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+
+            val myPost = LoginRequest(email, password)
             viewModel.pushLogin(myPost)
+
             viewModel.loginLiveData.observe(requireActivity(), Observer { response ->
-                if (response.isSuccessful) {
-                    Log.d("VVV", "Resp body: ${response.body().toString()}")
-                    Log.d("VVV", "Resp code: ${response.code()}")
-                    Log.d("VVV", "Resp message: ${response.message()}")
-                    Log.d("VVV", "Resp row: ${response.raw()}")
-                    Log.d("VVV", "Resp errorBody: ${response.errorBody()}")
-
-                    Toast.makeText(requireContext(), response.body().toString(), Toast.LENGTH_SHORT)
-                        .show()
+                if (response.isSuccessful && response.body()?.pLOGIN_FLAG == "Y") {
+                    Log.d("VVV", "Good!")
                 } else {
-                    Log.d("VVV", "Resp body: ${response.body().toString()}")
-                    Log.d("VVV", "Resp code: ${response.code()}")
-                    Log.d("VVV", "Resp row: ${response.raw()}")
-                    Log.d("VVV", "Resp message: ${response.message()}")
-                    Log.d("VVV", "Resp errorBody: ${response.errorBody()}")
-
+                    Log.d("VVV", response.body().toString())
                 }
             })
         }
