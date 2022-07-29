@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -56,23 +57,31 @@ class SignupFragment : Fragment() {
             val firstName = binding.firstNameEditText.text.toString()
             val phone = binding.phoneEditText.text.toString()
 
-            val myPost = ReguistrationRequest(email, password, lastName, phone, firstName)
-            viewModel.pushRegistration(myPost)
+            if (email.isBlank() || password.isBlank() || lastName.isBlank()
+                || firstName.isBlank() || phone.isBlank()
+            ) {
+                Toast.makeText(requireContext(), "PLEASE COMPLETE ALL FIELDS", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                val myPost = ReguistrationRequest(email, password, lastName, phone, firstName)
+                viewModel.pushRegistration(myPost)
 
-            viewModel.regLiveData.observe(requireActivity(), Observer { response ->
                 viewModel.regLiveData.observe(requireActivity(), Observer { response ->
-                    if (response.isSuccessful) {
-                        //Toast.makeText(requireContext(), "REGISTERED", Toast.LENGTH_SHORT).show()
+                    viewModel.regLiveData.observe(requireActivity(), Observer { response ->
+                        if (response.isSuccessful) {
 
-                        view.let { it1 ->
-                            Navigation.findNavController(it1).navigate(R.id.action_navigate_to_log_in_fragment)
+                            view.let { it1 ->
+                                Navigation.findNavController(it1)
+                                    .navigate(R.id.action_navigate_to_log_in_fragment)
+                            }
+
+                        } else {
+                            Log.d("VVV", response.body().toString())
                         }
-
-                    } else {
-                        Log.d("VVV", response.body().toString())
-                    }
+                    })
                 })
-            })
+            }
+
 
         }
 
