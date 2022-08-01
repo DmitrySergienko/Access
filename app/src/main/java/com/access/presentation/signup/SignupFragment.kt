@@ -1,4 +1,4 @@
-package com.access.ui.signup
+package com.access.presentation.signup
 
 import android.os.Bundle
 import android.util.Log
@@ -11,9 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.access.R
-import com.access.data.api.model.ReguistrationRequest
 import com.access.databinding.FragmentSignupBinding
-import com.access.ui.login.LogInFragment
+import com.access.domain.entity.ReguistrationRequest
+import com.access.presentation.login.LogInFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 

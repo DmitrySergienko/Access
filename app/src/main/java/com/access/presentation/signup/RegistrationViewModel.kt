@@ -1,11 +1,11 @@
-package com.access.ui.signup
+package com.access.presentation.signup
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.access.data.api.model.ReguistrationRequest
 import com.access.data.repository.AccessRepo
+import com.access.domain.entity.ReguistrationRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response

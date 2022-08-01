@@ -1,4 +1,4 @@
-package com.access.ui.main
+package com.access.presentation.main
 
 import android.os.Bundle
 import android.view.LayoutInflater

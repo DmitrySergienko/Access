@@ -1,4 +1,4 @@
-package com.access.data.api.model
+package com.access.domain.entity
 
 import com.google.gson.annotations.SerializedName
 

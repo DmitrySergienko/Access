@@ -6,7 +6,7 @@
     app:startDestination="@id/logInFragment">
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.access.ui.login.LogInFragment"
+        android:name="com.access.presentation.login.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.access.ui.signup.SignupFragment"
+        android:name="com.access.presentation.signup.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment2"
-        android:name="com.access.ui.main.MainFragment"
+        android:name="com.access.presentation.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action

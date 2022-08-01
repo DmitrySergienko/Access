@@ -1,4 +1,4 @@
-package com.access.ui
+package com.access.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

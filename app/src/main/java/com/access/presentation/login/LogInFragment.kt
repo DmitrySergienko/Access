@@ -1,4 +1,4 @@
-package com.access.ui.login
+package com.access.presentation.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.access.R
-import com.access.data.api.model.LoginRequest
 import com.access.databinding.FragmentLogInBinding
+import com.access.domain.entity.LoginRequest
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
