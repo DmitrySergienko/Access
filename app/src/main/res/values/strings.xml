@@ -8,4 +8,11 @@
     <string name="enter">Enter</string>
     <string name="show">Signup</string>
     <string name="signup">signup</string>
+    <string name="first_name">FIRST NAME</string>
+    <string name="last_name">LAST NAME</string>
+    <string name="email_name">EMAIL</string>
+    <string name="phone_name">"PHONE "</string>
+    <string name="password">PASSWORD</string>
+    <string name="back">back</string>
+    <string name="Access_Done">ACCESS SUCCESS</string>
 </resources>
