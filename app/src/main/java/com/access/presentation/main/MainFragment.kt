@@ -1,18 +1,20 @@
-package com.access
+package com.access.presentation.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.access.databinding.FragmentLogInBinding
+import com.access.R
+import com.access.databinding.FragmentMainBinding
 
 
-class LogInFragment : Fragment() {
+class MainFragment : Fragment() {
 
-    private var _binding: FragmentLogInBinding? = null
-    val binding: FragmentLogInBinding
+
+    private var _binding: FragmentMainBinding? = null
+    val binding: FragmentMainBinding
         get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +27,11 @@ class LogInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentLogInBinding.inflate(inflater, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        binding.showHideBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             view?.let { it1 ->
-                Navigation.findNavController(it1).navigate(R.id.navigate_to_signup_fragment)
+                Navigation.findNavController(it1).navigate(R.id.action_mainFragment2_to_logInFragment)
             }
         }
         return binding.root
@@ -37,8 +39,6 @@ class LogInFragment : Fragment() {
 
     companion object {
 
-        @JvmStatic
-        fun newInstance() =
-            LogInFragment()
+        fun newInstance() = MainFragment()
     }
 }
