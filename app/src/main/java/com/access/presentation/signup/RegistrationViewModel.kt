@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.access.data.repository.AccessRepo
+import com.access.domain.AccessRepoUseCase
 import com.access.domain.entity.ReguistrationRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
-    private val repo: AccessRepo
+    private val repo: AccessRepoUseCase
 ) : ViewModel() {
 
     private val _regLiveData = MutableLiveData<Response<Void>>()
