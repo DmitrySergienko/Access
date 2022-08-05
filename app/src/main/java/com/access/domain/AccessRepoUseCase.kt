@@ -9,14 +9,13 @@ import javax.inject.Inject
 
 class AccessRepoUseCase @Inject constructor(
     private val accessApi: AccessApi
+)  {
 
-) : AccessTypesRepository {
-
-    override suspend fun pushPostLog(post: LoginRequest): Response<LoginResponse> {
+    suspend fun pushPostLog(post: LoginRequest): Response<LoginResponse> {
         return accessApi.pushLogin(post)
     }
 
-    override suspend fun pushPostReg(post: ReguistrationRequest): Response<Void> {
+    suspend fun pushPostReg(post: ReguistrationRequest): Response<Void> {
         return accessApi.pushRegistration(post)
     }
 }
