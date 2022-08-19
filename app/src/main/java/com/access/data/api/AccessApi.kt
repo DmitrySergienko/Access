@@ -10,13 +10,9 @@ import retrofit2.http.POST
 interface  AccessApi {
 
     @POST("pls/apex/pmstest/MobileApp/login")
-    suspend fun pushLogin(
-        @Body post: LoginRequest
-    ): Response<LoginResponse>
+    suspend fun pushLogin(@Body post: LoginRequest): Response<LoginResponse>
 
     @POST("pls/apex/pmstest/MobileApp/registration")
-    suspend fun pushRegistration(
-        @Body post: ReguistrationRequest
-    ): Response<Void>
+    suspend fun pushRegistration(@Body post: ReguistrationRequest): Response<Void>
 
 }

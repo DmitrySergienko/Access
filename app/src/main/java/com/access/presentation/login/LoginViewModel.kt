@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.access.domain.AccessRepoUseCase
+import com.access.data.repository.AccessRepoImpl
 import com.access.domain.entity.LoginRequest
 import com.access.domain.entity.LoginResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repo: AccessRepoUseCase
+    private val repo: AccessRepoImpl
 ) : ViewModel() {
 
     private val _loginLiveData = MutableLiveData<Response<LoginResponse>>()
@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor(
 
     fun pushLogin(post: LoginRequest) {
         viewModelScope.launch {
-            val response: Response<LoginResponse> = repo.pushPostLog(post)
+            val response: Response<LoginResponse> = repo.pushLogin(post)
 
             _loginLiveData.value = response
         }

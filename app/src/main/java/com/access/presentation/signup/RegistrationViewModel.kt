@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.access.domain.AccessRepoUseCase
+import com.access.data.repository.AccessRepoImpl
 import com.access.domain.entity.ReguistrationRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
-    private val repo: AccessRepoUseCase
+    private val repo: AccessRepoImpl
 ) : ViewModel() {
 
     private val _regLiveData = MutableLiveData<Response<Void>>()
@@ -21,16 +21,10 @@ class RegistrationViewModel @Inject constructor(
 
     fun pushRegistration(post: ReguistrationRequest) {
         viewModelScope.launch {
-            val response: Response<Void> = repo.pushPostReg(post)
+            val response: Response<Void> = repo.pushRegistration(post)
 
             _regLiveData.value = response
         }
     }
-//    fun pushLogin(post: LoginRequest) {
-//        viewModelScope.launch {
-//            val response: Response<LoginResponse> = repo.pushPostLog(post)
-//
-//            _loginLiveData.value = response
-//        }
-//    }
+
 }
