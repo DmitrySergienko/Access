@@ -1,6 +1,7 @@
 package com.access.di
 
 
+import com.access.data.api.AccessApi
 import com.access.data.repository.AccessRepoImpl
 import dagger.Module
 import dagger.Provides
@@ -28,9 +29,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApi(retrofit: Retrofit): AccessRepoImpl =
-        retrofit.create(AccessRepoImpl::class.java)
+    fun provideApi(retrofit: Retrofit) = retrofit.create(AccessApi ::class.java)
 }
-
-
 
