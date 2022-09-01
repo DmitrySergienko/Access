@@ -2,7 +2,7 @@ package com.access.di
 
 
 import com.access.data.api.AccessApi
-import com.access.data.repository.AccessRepoImpl
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

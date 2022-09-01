@@ -16,3 +16,6 @@ interface  AccessApi {
     suspend fun pushRegistration(@Body post: ReguistrationRequest): Response<Void>
 
 }
+
+//    suspend fun pushLogin(post: LoginRequest): Response<LoginResponse>
+//    suspend fun pushRegistration(post: ReguistrationRequest): Response<Void>

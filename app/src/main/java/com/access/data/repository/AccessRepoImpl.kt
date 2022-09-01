@@ -16,17 +16,14 @@ class AccessRepoImpl @Inject constructor(
 
 
     override suspend fun pushLogin(post: LoginRequest): Response<LoginResponse> {
-
-        val response = accessApi.pushLogin(post)
-        return response
+        return accessApi.pushLogin(post)
 
     }
 
 
     override suspend fun pushRegistration(post: ReguistrationRequest): Response<Void> {
+        return accessApi.pushRegistration(post)
 
-        val response = accessApi.pushRegistration(post)
-        return response
     }
 
 }
