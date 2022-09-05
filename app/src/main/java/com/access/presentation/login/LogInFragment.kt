@@ -8,11 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.access.R
 import com.access.databinding.FragmentLogInBinding
 import com.access.domain.entity.LoginRequest
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class LogInFragment : Fragment() {
@@ -45,7 +47,6 @@ class LogInFragment : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,18 +58,28 @@ class LogInFragment : Fragment() {
             val myPost = LoginRequest(email, password)
             viewModel.pushLogin(myPost)
 
-            viewModel.loginLiveData.observe(requireActivity(), Observer { response ->
-                if (response.isSuccessful && response.body()?.pLOGIN_FLAG == "Y") {
-                    view?.let { it1 ->
-                        Navigation.findNavController(it1).navigate(R.id.action_logInFragment_to_mainFragment2)
+            lifecycleScope.launchWhenStarted {
+                viewModel.loginSharedFlow.collectLatest {
+                    if (it.isSuccessful && it.body()?.pLOGIN_FLAG == "Y") {
+                        view.let { it1 ->
+                            Navigation.findNavController(it1)
+                                .navigate(R.id.action_logInFragment_to_mainFragment2)
+                        }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "INCORRECT EMAIL OR PASSWORD",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                } else {
-                    Toast.makeText(requireContext(), "INCORRECT EMAIL OR PASSWORD", Toast.LENGTH_SHORT).show()
                 }
-            })
+            }
         }
 
+
     }
+
+
     companion object {
 
         @JvmStatic

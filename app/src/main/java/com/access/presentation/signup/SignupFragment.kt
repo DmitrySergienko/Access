@@ -9,12 +9,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.access.R
 import com.access.databinding.FragmentSignupBinding
 import com.access.domain.entity.ReguistrationRequest
 import com.access.presentation.login.LogInFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 
 @AndroidEntryPoint
@@ -66,9 +68,9 @@ class SignupFragment : Fragment() {
                 val myPost = ReguistrationRequest(email, password, lastName, phone, firstName)
                 viewModel.pushRegistration(myPost)
 
-                viewModel.regLiveData.observe(requireActivity(), Observer { response ->
-                    viewModel.regLiveData.observe(requireActivity(), Observer { response ->
-                        if (response.isSuccessful) {
+                lifecycleScope.launchWhenStarted {
+                    viewModel.regSharedFlow.collectLatest {
+                        if (it.isSuccessful) {
 
                             view.let { it1 ->
                                 Navigation.findNavController(it1)
@@ -76,15 +78,12 @@ class SignupFragment : Fragment() {
                             }
 
                         } else {
-                            Log.d("VVV", response.body().toString())
+                            Log.d("VVV", it.body().toString())
                         }
-                    })
-                })
+                    }
+                }
             }
-
-
         }
-
     }
 
     companion object {

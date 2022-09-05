@@ -9,6 +9,8 @@ import com.access.domain.entity.LoginRequest
 import com.access.domain.entity.LoginResponse
 import com.access.domain.usecases.AccessRepoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -18,15 +20,15 @@ class LoginViewModel @Inject constructor(
     private val repo: AccessRepoUseCase
 ) : ViewModel() {
 
-    private val _loginLiveData = MutableLiveData<Response<LoginResponse>>()
-    val loginLiveData: LiveData<Response<LoginResponse>> = _loginLiveData
+    private val _loginSharedFlow = MutableSharedFlow<Response<LoginResponse>>()
+    val loginSharedFlow = _loginSharedFlow.asSharedFlow()
 
 
     fun pushLogin(post: LoginRequest) {
         viewModelScope.launch {
             val response: Response<LoginResponse> = repo.pushLogin(post)
 
-            _loginLiveData.value = response
+            _loginSharedFlow.emit(response)
         }
     }
 
